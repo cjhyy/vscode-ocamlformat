@@ -1,7 +1,7 @@
 {
-    "name": "auto-formatter",
-    "displayName": "auto-formatter",
-    "description": "an auto format ext for vscode",
+    "name": "vscode-ocamlformatter",
+    "displayName": "vscode-ocamlformatter",
+    "description": "an ocamlformatter ext for vscode",
     "version": "0.0.1",
     "publisher": "curry",
     "engines": {
