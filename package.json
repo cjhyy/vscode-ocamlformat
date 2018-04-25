@@ -1,0 +1,39 @@
+{
+    "name": "auto-formatter",
+    "displayName": "auto-formatter",
+    "description": "an auto format ext for vscode",
+    "version": "0.0.1",
+    "publisher": "curry",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "categories": ["Other"],
+    "activationEvents": ["onLanguage:ocaml"],
+    "main": "./dist/extension",
+    "contributes": {
+        "capabilities": {
+            "documentFormattingProvider": "true"
+        }
+    },
+    "scripts": {
+        "start": "babel src -d dist -w",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.0.0-beta.46",
+        "@babel/core": "^7.0.0-beta.46",
+        "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+        "@babel/plugin-proposal-do-expressions": "^7.0.0-beta.46",
+        "@babel/plugin-proposal-pipeline-operator": "^7.0.0-beta.46",
+        "@babel/plugin-proposal-throw-expressions": "^7.0.0-beta.46",
+        "@babel/preset-env": "^7.0.0-beta.46",
+        "@babel/preset-stage-0": "^7.0.0-beta.46",
+        "babel-eslint": "^8.0.0-alpha.17",
+        "eslint": "^4.19.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "ramda": "^0.25.0"
+    }
+}
