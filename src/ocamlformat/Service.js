@@ -40,7 +40,7 @@ export default class Service {
     }
 
     async formatText(text) {
-        const tempFilePath = path.resolve(__dirname, '../../.temp')
+        const tempFilePath = path.resolve(__dirname, '../../node_modules/.temp')
 
         await errorFirstPromisify(writeFile)(tempFilePath, text, 'utf8')
         const [newText, stderr] = await errorFirstPromisify(exec)(`${this.formatCommand} ${tempFilePath}`)

@@ -49,7 +49,7 @@ class Service {
   }
 
   async formatText(text) {
-    const tempFilePath = _path.default.resolve(__dirname, '../../.temp');
+    const tempFilePath = _path.default.resolve(__dirname, '../../node_modules/.temp');
 
     await (0, _utils.errorFirstPromisify)(_fs.writeFile)(tempFilePath, text, 'utf8');
     const [newText, stderr] = await (0, _utils.errorFirstPromisify)(_child_process.exec)(`${this.formatCommand} ${tempFilePath}`);
