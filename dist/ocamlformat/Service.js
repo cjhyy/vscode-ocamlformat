@@ -42,6 +42,15 @@ class Service {
     }
   }
 
+  async formatText(text) {
+    const tempFilePath = path.resolve(__dirname, '../../.temp');
+    console.log(text);
+    await errorFirstPromisify(writeFile)(tempFilePath, text, 'utf8');
+    const [newText, stderr] = await errorFirstPromisify(exec)(`${service.formatCommand} ${tempFilePath}`);
+    if (stderr) throw stderr;
+    return newText;
+  }
+
 }
 
 exports.default = Service;

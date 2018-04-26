@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.documentSelector = exports.outputChannel = void 0;
 
-var _child_process = require("child_process");
-
 var _vscode = require("vscode");
 
 var _utils = require("../utils");
@@ -25,9 +23,10 @@ exports.documentSelector = documentSelector;
 const service = new _Service.default();
 
 const provideDocumentFormattingEdits = async (textDocument, formattingOptions, cancellationToken) => {
+  const text = textDocument.getText();
+
   try {
-    const [newText, stderr] = await (0, _utils.errorFirstPromisify)(_child_process.exec)(`${service.formatCommand} ${textDocument.fileName}`);
-    if (stderr) throw stderr;
+    const newText = await service.formatText(text);
     const rangeStart = textDocument.lineAt(0).range.start;
     const rangeEnd = textDocument.lineAt(textDocument.lineCount - 1).range.end;
     const range = new _vscode.Range(rangeStart, rangeEnd);
