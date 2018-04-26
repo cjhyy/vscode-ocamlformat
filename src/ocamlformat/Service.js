@@ -1,7 +1,14 @@
-import { execSync } from 'child_process'
+import { exec, execSync } from 'child_process'
+import path from 'path'
 import { toString, trim } from 'ramda'
 import { window, workspace } from 'vscode'
-import { formatError, formatterInvalidSassPathMessage, formatterMissingCommandMessage } from '../utils'
+import {
+    errorFirstPromisify,
+    formatError,
+    formatterInvalidSassPathMessage,
+    formatterMissingCommandMessage
+} from '../utils'
+import { writeFile } from 'fs'
 
 export default class Service {
     static defaultFormatCommand = 'ocamlformat'
@@ -36,7 +43,7 @@ export default class Service {
         const tempFilePath = path.resolve(__dirname, '../../.temp')
 
         await errorFirstPromisify(writeFile)(tempFilePath, text, 'utf8')
-        const [newText, stderr] = await errorFirstPromisify(exec)(`${service.formatCommand} ${tempFilePath}`)
+        const [newText, stderr] = await errorFirstPromisify(exec)(`${this.formatCommand} ${tempFilePath}`)
         if (stderr) throw stderr
 
         return newText

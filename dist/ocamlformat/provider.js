@@ -24,6 +24,7 @@ const service = new _Service.default();
 
 const provideDocumentFormattingEdits = async (textDocument, formattingOptions, cancellationToken) => {
   const text = textDocument.getText();
+  console.log(text);
 
   try {
     const newText = await service.formatText(text);
@@ -32,6 +33,7 @@ const provideDocumentFormattingEdits = async (textDocument, formattingOptions, c
     const range = new _vscode.Range(rangeStart, rangeEnd);
     return [_vscode.TextEdit.replace(range, newText)];
   } catch (error) {
+    console.error(error);
     (void 0).outputChannel.append((0, _utils.formatError)(error));
     (void 0).outputChannel.show();
   }

@@ -10,6 +10,7 @@ const service = new Service()
 
 const provideDocumentFormattingEdits = async (textDocument, formattingOptions, cancellationToken) => {
     const text = textDocument.getText()
+    console.log(text)
 
     try {
         const newText = await service.formatText(text)
@@ -20,6 +21,7 @@ const provideDocumentFormattingEdits = async (textDocument, formattingOptions, c
 
         return [TextEdit.replace(range, newText)]
     } catch (error) {
+        console.error(error)
         this.outputChannel.append(formatError(error))
         this.outputChannel.show()
     }

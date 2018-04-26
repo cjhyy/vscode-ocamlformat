@@ -7,11 +7,17 @@ exports.default = void 0;
 
 var _child_process = require("child_process");
 
+var _path = _interopRequireDefault(require("path"));
+
 var _ramda = require("ramda");
 
 var _vscode = require("vscode");
 
 var _utils = require("../utils");
+
+var _fs = require("fs");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -43,10 +49,10 @@ class Service {
   }
 
   async formatText(text) {
-    const tempFilePath = path.resolve(__dirname, '../../.temp');
-    console.log(text);
-    await errorFirstPromisify(writeFile)(tempFilePath, text, 'utf8');
-    const [newText, stderr] = await errorFirstPromisify(exec)(`${service.formatCommand} ${tempFilePath}`);
+    const tempFilePath = _path.default.resolve(__dirname, '../../.temp');
+
+    await (0, _utils.errorFirstPromisify)(_fs.writeFile)(tempFilePath, text, 'utf8');
+    const [newText, stderr] = await (0, _utils.errorFirstPromisify)(_child_process.exec)(`${this.formatCommand} ${tempFilePath}`);
     if (stderr) throw stderr;
     return newText;
   }
