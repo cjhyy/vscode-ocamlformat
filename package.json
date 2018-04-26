@@ -1,13 +1,13 @@
 {
-    "name": "vscode-ocamlformatter",
-    "displayName": "vscode-ocamlformatter",
-    "description": "an ocamlformatter ext for vscode",
+    "name": "vscode-ocamlformat",
+    "displayName": "vscode-ocamlformat",
+    "description": "an ocamlformat ext for vscode",
     "version": "0.0.1",
     "publisher": "curry",
     "engines": {
         "vscode": "^1.22.0"
     },
-    "categories": ["Other"],
+    "categories": ["Formatters"],
     "activationEvents": ["onLanguage:ocaml"],
     "main": "./dist/extension",
     "contributes": {
@@ -31,6 +31,9 @@
         "@babel/preset-stage-0": "^7.0.0-beta.46",
         "babel-eslint": "^8.0.0-alpha.17",
         "eslint": "^4.19.1",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-prettier": "^2.6.0",
+        "prettier": "^1.12.1",
         "vscode": "^1.1.6"
     },
     "dependencies": {

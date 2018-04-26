@@ -1,7 +1,7 @@
-import { split, slice, join, replace, trim } from 'ramda'
+import { join, replace, slice, split, trim } from 'ramda'
 
 export const formatterMissingCommandMessage = 'Please install the target formatter command line tool.'
-export const formatterInvalidSassPathMessage = 'The ocamlformatter path setting is not valid.'
+export const formatterInvalidSassPathMessage = 'The formatter path setting is not valid.'
 export const formatterErrorMessage = 'There was an error formatting your file. See Output panel for more details.'
 
 export const errorFirstPromisify = fn => (...args) =>
@@ -16,18 +16,4 @@ export const errorFirstPromisify = fn => (...args) =>
         })
     })
 
-export const formatError = error => {
-    const errorString = error.toString('utf8').trim()
-    console.log(error)
-
-    return (
-        (errorString
-            |> split('\n')
-            |> slice(1)
-            |> join('\n')
-            |> replace('Use --trace for backtrace.', '')
-            |> replace('Use --trace for backtrace', '')
-            |> trim) +
-        '\n'
-    )
-}
+export const formatError = error => (errorString |> toString |> trim) + '\n'
