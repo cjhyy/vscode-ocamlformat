@@ -4,7 +4,7 @@ import Service from './Service'
 
 export const outputChannel = window.createOutputChannel('ocamlformat')
 
-export const documentSelector = [{ language: 'ocaml' }]
+export const documentSelector = [{ scheme: 'file', language: 'ocaml' }]
 
 const service = new Service()
 

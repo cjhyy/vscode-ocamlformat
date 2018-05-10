@@ -17,6 +17,7 @@ const outputChannel = _vscode.window.createOutputChannel('ocamlformat');
 
 exports.outputChannel = outputChannel;
 const documentSelector = [{
+  scheme: 'file',
   language: 'ocaml'
 }];
 exports.documentSelector = documentSelector;
