@@ -13,7 +13,13 @@
     "contributes": {
         "capabilities": {
             "documentFormattingProvider": "true"
-        }
+        },
+        "commands": [
+            {
+                "command": "extension.ocamlformat",
+                "title": "ocamlformat"
+            }
+        ]
     },
     "scripts": {
         "start": "babel src -d dist -w",

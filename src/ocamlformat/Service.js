@@ -23,7 +23,7 @@ export default class Service {
         this.checkoFormtatter()
     }
 
-    checkoFormtatter() {
+    checkoFormtatter = () => {
         try {
             const version = `${this.formatCommand} --version` |> execSync |> toString |> trim
 
@@ -39,7 +39,12 @@ export default class Service {
         }
     }
 
-    async formatText(text) {
+    inplaceFormat = async filepath => {
+        const [_, stderr] = await errorFirstPromisify(exec)(`${this.formatCommand} ${filepath} --inplace`)
+        if (stderr) throw stderr
+    }
+
+    formatText = async text => {
         const tempFilePath = path.resolve(__dirname, '../../node_modules/.temp')
 
         await errorFirstPromisify(writeFile)(tempFilePath, text, 'utf8')

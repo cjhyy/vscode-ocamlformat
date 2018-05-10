@@ -1,4 +1,9 @@
 import { languages } from 'vscode'
 import provider, { documentSelector, outputChannel } from './provider'
+import commands from './commands'
 
-export default [languages.registerDocumentFormattingEditProvider(documentSelector, provider), outputChannel]
+export default [
+    outputChannel,
+    languages.registerDocumentFormattingEditProvider(documentSelector, provider),
+    ...commands
+]

@@ -28,9 +28,9 @@ const errorFirstPromisify = fn => (...args) => new Promise((resolve, reject) => 
 exports.errorFirstPromisify = errorFirstPromisify;
 
 const formatError = error => {
-  var _ref, _errorString;
+  var _ref, _error;
 
-  return (_ref = (_errorString = errorString, toString(_errorString)), (0, _ramda.trim)(_ref)) + '\n';
+  return (_ref = (_error = error, toString(_error)), (0, _ramda.trim)(_ref)) + '\n';
 };
 
 exports.formatError = formatError;

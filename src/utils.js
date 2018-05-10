@@ -16,4 +16,4 @@ export const errorFirstPromisify = fn => (...args) =>
         })
     })
 
-export const formatError = error => (errorString |> toString |> trim) + '\n'
+export const formatError = error => (error |> toString |> trim) + '\n'

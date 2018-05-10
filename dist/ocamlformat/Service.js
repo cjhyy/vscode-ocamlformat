@@ -29,32 +29,33 @@ class Service {
   }
 
   constructor() {
+    _defineProperty(_defineProperty(_defineProperty(this, "checkoFormtatter", () => {
+      try {
+        var _ref, _ref2, _ref3;
+
+        const version = (_ref = (_ref2 = (_ref3 = `${this.formatCommand} --version`, (0, _child_process.execSync)(_ref3)), (0, _ramda.toString)(_ref2)), (0, _ramda.trim)(_ref));
+
+        _vscode.window.showInformationMessage(`${this.formatCommand} version: ${version}`);
+      } catch (error) {
+        const warningMessage = this.formatCommand === Service.defaultFormatCommand ? _utils.formatterMissingCommandMessage : _utils.formatterInvalidSassPathMessage;
+
+        _vscode.window.showErrorMessage((0, _utils.formatError)(error));
+
+        _vscode.window.showWarningMessage(`${this.formatCommand} warn:`, warningMessage);
+      }
+    }), "inplaceFormat", async filepath => {
+      const [_, stderr] = await (0, _utils.errorFirstPromisify)(_child_process.exec)(`${this.formatCommand} ${filepath} --inplace`);
+      if (stderr) throw stderr;
+    }), "formatText", async text => {
+      const tempFilePath = _path.default.resolve(__dirname, '../../node_modules/.temp');
+
+      await (0, _utils.errorFirstPromisify)(_fs.writeFile)(tempFilePath, text, 'utf8');
+      const [newText, stderr] = await (0, _utils.errorFirstPromisify)(_child_process.exec)(`${this.formatCommand} ${tempFilePath}`);
+      if (stderr) throw stderr;
+      return newText;
+    });
+
     this.checkoFormtatter();
-  }
-
-  checkoFormtatter() {
-    try {
-      var _ref, _ref2, _ref3;
-
-      const version = (_ref = (_ref2 = (_ref3 = `${this.formatCommand} --version`, (0, _child_process.execSync)(_ref3)), (0, _ramda.toString)(_ref2)), (0, _ramda.trim)(_ref));
-
-      _vscode.window.showInformationMessage(`${this.formatCommand} version: ${version}`);
-    } catch (error) {
-      const warningMessage = this.formatCommand === Service.defaultFormatCommand ? _utils.formatterMissingCommandMessage : _utils.formatterInvalidSassPathMessage;
-
-      _vscode.window.showErrorMessage((0, _utils.formatError)(error));
-
-      _vscode.window.showWarningMessage(`${this.formatCommand} warn:`, warningMessage);
-    }
-  }
-
-  async formatText(text) {
-    const tempFilePath = _path.default.resolve(__dirname, '../../node_modules/.temp');
-
-    await (0, _utils.errorFirstPromisify)(_fs.writeFile)(tempFilePath, text, 'utf8');
-    const [newText, stderr] = await (0, _utils.errorFirstPromisify)(_child_process.exec)(`${this.formatCommand} ${tempFilePath}`);
-    if (stderr) throw stderr;
-    return newText;
   }
 
 }
