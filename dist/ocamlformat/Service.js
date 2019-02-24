@@ -29,7 +29,7 @@ class Service {
   }
 
   constructor() {
-    _defineProperty(_defineProperty(_defineProperty(this, "checkoFormtatter", () => {
+    _defineProperty(this, "checkoFormtatter", () => {
       try {
         var _ref, _ref2, _ref3;
 
@@ -43,10 +43,14 @@ class Service {
 
         _vscode.window.showWarningMessage(`${this.formatCommand} warn:`, warningMessage);
       }
-    }), "inplaceFormat", async filepath => {
+    });
+
+    _defineProperty(this, "inplaceFormat", async filepath => {
       const [_, stderr] = await (0, _utils.errorFirstPromisify)(_child_process.exec)(`${this.formatCommand} ${filepath} --inplace`);
       if (stderr) throw stderr;
-    }), "formatText", async text => {
+    });
+
+    _defineProperty(this, "formatText", async text => {
       const tempFilePath = _path.default.resolve(__dirname, '../../node_modules/.temp');
 
       await (0, _utils.errorFirstPromisify)(_fs.writeFile)(tempFilePath, text, 'utf8');
