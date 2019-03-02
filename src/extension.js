@@ -1,9 +1,15 @@
 import { window } from 'vscode'
-import disposables from './ocamlformat/disposables'
+import { outputChannel } from './commons'
+import languageFormatProvider from './language-format-provider'
+import inplaceFormatCommand from './inplace-format-commands'
+
+const disposables = [outputChannel, languageFormatProvider, inplaceFormatCommand]
 
 export const activate = context => {
     window.showInformationMessage('extension "ocamlformat" is now active!')
-    context.subscriptions.push(...disposables)
+    disposables.forEach(disposable => context.subscriptions.push(disposable))
 }
 
-export const deactivate = () => {}
+export const deactivate = () => {
+    window.showInformationMessage('extension "ocamlformat" is now deactived!')
+}

@@ -9,7 +9,7 @@ var _ramda = require("ramda");
 
 const formatterMissingCommandMessage = 'Please install the target formatter command line tool.';
 exports.formatterMissingCommandMessage = formatterMissingCommandMessage;
-const formatterInvalidSassPathMessage = 'The formatter path setting is not valid.';
+const formatterInvalidSassPathMessage = 'The formatter path setting is invalid.';
 exports.formatterInvalidSassPathMessage = formatterInvalidSassPathMessage;
 const formatterErrorMessage = 'There was an error formatting your file. See Output panel for more details.';
 exports.formatterErrorMessage = formatterErrorMessage;

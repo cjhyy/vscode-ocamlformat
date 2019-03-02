@@ -1,8 +1,5 @@
 import { commands, window } from 'vscode'
-import { formatError } from '../utils'
-import Service from './Service'
-
-const service = new Service()
+import { formatError, service } from './commons'
 
 const inplaceFormat = commands.registerCommand('extension.ocamlformat', async () => {
     const editor = window.activeTextEditor
@@ -19,4 +16,4 @@ const inplaceFormat = commands.registerCommand('extension.ocamlformat', async ()
     }
 })
 
-export default [inplaceFormat]
+export default inplaceFormat
